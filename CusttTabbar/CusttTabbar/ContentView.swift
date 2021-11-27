@@ -9,21 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        FloatingTabView<AnyView> {
+        FloatingTabView {
             FloatingTabViewItem(image: "y.circle") {
-                AnyView(Text("prova"))
+                Text("prova")
             }
             FloatingTabViewItem(image: "magnifyingglass.circle") {
-                AnyView(Text("prova2"))
+                Text("prova2")
             }
             FloatingTabViewItem(image: "heart.circle") {
-                    AnyView(Text("prova3"))
+                Text("prova3")
             }
             FloatingTabViewItem(image: "cart.circle") {
-                        AnyView(Color.yellow)
+                Color.yellow
             }
             FloatingTabViewItem(image: "person.circle") {
-                            AnyView(Color.red)
+                Color.red
             }
         }
     }
@@ -35,13 +35,13 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct FloatingTabViewItem<Content>: View where Content: View {
-    let content: Content
+struct FloatingTabViewItem: View {
+    let content: AnyView
     let image: String
     
-    init(image: String = "",
+    init<Content: View>(image: String = "",
          @ViewBuilder content: () -> Content) {
-        self.content = content()
+        self.content = AnyView(content())
         self.image = image
     }
     
@@ -50,8 +50,8 @@ struct FloatingTabViewItem<Content>: View where Content: View {
     }
 }
 
-struct FloatingTabView<Content>: View where Content: View {
-    let content: [FloatingTabViewItem<AnyView>]
+struct FloatingTabView: View {
+    let content: [FloatingTabViewItem]
     let height: CGFloat
     let padding: CGFloat
     let tint: Color
@@ -60,12 +60,12 @@ struct FloatingTabView<Content>: View where Content: View {
     
     @State private var selected = 0
     
-    init<Views>(height: CGFloat = 40,
+    init<T>(height: CGFloat = 40,
                 padding: CGFloat = 16,
-                tint: Color = .black,
+                tint: Color = .white,
                 background: Color = .cyan,
                 imageSize: CGFloat = 25,
-                @ViewBuilder content: () -> TupleView<Views>) {
+                @ViewBuilder content: () -> TupleView<T>) {
         self.height = height
         self.padding = padding
         self.tint = tint
@@ -103,13 +103,13 @@ struct FloatingTabView<Content>: View where Content: View {
 }
 
 extension TupleView {
-    func getViews<T: View>() -> [T] {
+    func getViews() -> [FloatingTabViewItem] {
         makeArray(from: value)
     }
     
-    private func makeArray<Tuple, T: View>(from tuple: Tuple) -> [T] {
-        func convert(child: Mirror.Child) -> T? {
-            child.value as? T
+    private func makeArray<Tuple>(from tuple: Tuple) -> [FloatingTabViewItem] {
+        func convert(child: Mirror.Child) -> FloatingTabViewItem? {
+            child.value as? FloatingTabViewItem
         }
         return Mirror(reflecting: tuple)
             .children
