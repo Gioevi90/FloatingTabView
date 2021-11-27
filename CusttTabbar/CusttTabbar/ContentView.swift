@@ -11,19 +11,35 @@ struct ContentView: View {
     var body: some View {
         FloatingTabView {
             FloatingTabViewItem(image: "y.circle") {
-                Text("prova")
+                ZStack {
+                    Color.gray
+                    Text("prova")
+                }
+                
             }
             FloatingTabViewItem(image: "magnifyingglass.circle") {
-                Text("prova2")
+                ZStack {
+                    Color.gray
+                    Text("prova2")
+                }
             }
             FloatingTabViewItem(image: "heart.circle") {
-                Text("prova3")
+                ZStack {
+                    Color.gray
+                    Text("prova3")
+                }
             }
             FloatingTabViewItem(image: "cart.circle") {
-                Color.yellow
+                ZStack {
+                    Color.gray
+                    Text("prova4")
+                }
             }
             FloatingTabViewItem(image: "person.circle") {
-                Color.red
+                ZStack {
+                    Color.gray
+                    Text("prova5")
+                }
             }
         }
     }
@@ -62,8 +78,8 @@ struct FloatingTabView: View {
     
     init<T>(height: CGFloat = 40,
                 padding: CGFloat = 16,
-                tint: Color = .white,
-                background: Color = .cyan,
+                tint: Color = .black,
+                background: Color = .white,
                 imageSize: CGFloat = 25,
                 @ViewBuilder content: () -> TupleView<T>) {
         self.height = height
