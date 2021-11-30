@@ -102,7 +102,8 @@ struct FloatingTabView: View {
                         ForEach(content.indices) { index in
                             Image(systemName: selected == index ? content[index].image + ".fill" : content[index].image)
                                 .resizable()
-                                .frame(width: imageSize, height: imageSize)
+                                .frame(width: imageSize,
+                                       height: imageSize)
                                 .offset(x: 0, y: selected == index ? -(height/8) : 0)
                                 .onTapGesture {
                                     withAnimation(.interactiveSpring(response: 0.6,
@@ -116,11 +117,11 @@ struct FloatingTabView: View {
                     }
                     .frame(height: height)
                     .background(background
-                                    .clipShape(TabItemCurve(target: CGFloat(selected) * itemWidth(tabWidth: reader.size.width, padding: padding, items: content.count) + itemWidth(tabWidth: reader.size.width, padding: padding, items: content.count) / 2)))
+                                    .clipShape(TabItemCurve(target: CGFloat(selected + 1) * itemWidth(tabWidth: reader.size.width, padding: padding, items: content.count) - imageSize / 2)))
                     .overlay (Circle()
                         .fill(background)
                         .frame(width: 6, height: 6)
-                                .offset(x: CGFloat(selected) * itemWidth(tabWidth: reader.size.width, padding: padding, items: content.count) + itemWidth(tabWidth: reader.size.width, padding: padding, items: content.count) / 2 - 3, y: -6), alignment: .bottomLeading )
+                                .offset(x: CGFloat(selected + 1) * itemWidth(tabWidth: reader.size.width, padding: padding, items: content.count) - imageSize / 2 - 3, y: -6), alignment: .bottomLeading)
                     .foregroundColor(tint)
                     .cornerRadius(height * 0.5)
                     .padding(padding)
@@ -130,7 +131,7 @@ struct FloatingTabView: View {
     }
     
     func itemWidth(tabWidth: CGFloat, padding: CGFloat, items: Int) -> CGFloat {
-        (tabWidth - padding * 2) / CGFloat(items)
+        (tabWidth - padding * 2 - imageSize) / CGFloat(items)
     }
 }
 
@@ -166,13 +167,17 @@ struct TabItemCurve: Shape {
             
             let mid = target
             
-            path.move(to: .init(x: mid - 40, y: rect.height))
+            // padding - [1 2 3 4 5] - padding -> single size = (w - padding) / 5
+            // image size = 25
+            // punto centrale -> single size + single size / 2
+            
+            path.move(to: .init(x: mid - 30, y: rect.height))
             
             let to1 = CGPoint(x: mid, y: rect.height - 20)
             let control1 = CGPoint(x: mid - 15 , y: rect.height)
             let control2 = CGPoint(x: mid - 15 , y: rect.height - 20)
             
-            let to2 = CGPoint(x: mid + 40, y: rect.height)
+            let to2 = CGPoint(x: mid + 30, y: rect.height)
             let control3 = CGPoint(x: mid + 15 , y: rect.height - 20)
             let control4 = CGPoint(x: mid + 15 , y: rect.height)
             
