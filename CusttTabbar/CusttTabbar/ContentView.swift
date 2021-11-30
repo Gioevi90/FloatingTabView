@@ -76,6 +76,10 @@ struct FloatingTabView: View {
     
     @State private var selected = 0
     
+    func selectedTarget(tabWidth: CGFloat) -> CGFloat {
+        CGFloat(selected + 1) * itemWidth(tabWidth: tabWidth, padding: padding, items: content.count) + imageSize / 2 + CGFloat(selected) * imageSize
+    }
+    
     init<T>(height: CGFloat = 60,
             padding: CGFloat = 16,
             tint: Color = .black,
@@ -117,11 +121,11 @@ struct FloatingTabView: View {
                     }
                     .frame(height: height)
                     .background(background
-                                    .clipShape(TabItemCurve(target: CGFloat(selected + 1) * itemWidth(tabWidth: reader.size.width, padding: padding, items: content.count) - imageSize / 2)))
+                                    .clipShape(TabItemCurve(target: selectedTarget(tabWidth: reader.size.width))))
                     .overlay (Circle()
-                        .fill(background)
-                        .frame(width: 6, height: 6)
-                                .offset(x: CGFloat(selected + 1) * itemWidth(tabWidth: reader.size.width, padding: padding, items: content.count) - imageSize / 2 - 3, y: -6), alignment: .bottomLeading)
+                                .fill(background)
+                                .frame(width: 6, height: 6)
+                                .offset(x: selectedTarget(tabWidth: reader.size.width) - 3, y: -6), alignment: .bottomLeading)
                     .foregroundColor(tint)
                     .cornerRadius(height * 0.5)
                     .padding(padding)
@@ -131,7 +135,7 @@ struct FloatingTabView: View {
     }
     
     func itemWidth(tabWidth: CGFloat, padding: CGFloat, items: Int) -> CGFloat {
-        (tabWidth - padding * 2 - imageSize) / CGFloat(items)
+        ((tabWidth - padding * 2) - (imageSize * CGFloat(items))) / CGFloat(items + 1)
     }
 }
 
