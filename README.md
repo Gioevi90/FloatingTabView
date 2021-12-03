@@ -14,7 +14,7 @@ The differences between it and the other Custom TabView are:
 
 # How to integrate it
 
-## Swift package manager
+## Swift Package Manager
 
 You can add it adding the following swift package:
 
