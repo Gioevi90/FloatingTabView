@@ -1,6 +1,8 @@
 # FloatingTabView
 A custom TabView in SwiftUI
 
+![Alt Text](./Resources/FloatingTabView.gif)
+
 FloatingTabView is a very lightweight custom TabView in SwiftUI. 
 
 The differences between it and the other Custom TabView are:

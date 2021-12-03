@@ -10,35 +10,14 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         FloatingTabView {
-            FloatingTabViewItem(image: "y.circle") {
-                ZStack {
-                    Color.gray
-                    Text("prova")
-                }
-                
+            FloatingTabViewItem(image: "house.circle") {
+                Color.blue
             }
-            FloatingTabViewItem(image: "magnifyingglass.circle") {
+            FloatingTabViewItem(image: "square.and.arrow.up.circle") {
                 ZStack {
-                    Color.gray
-                    Text("prova2")
-                }
-            }
-            FloatingTabViewItem(image: "heart.circle") {
-                ZStack {
-                    Color.gray
-                    Text("prova3")
-                }
-            }
-            FloatingTabViewItem(image: "cart.circle") {
-                ZStack {
-                    Color.gray
-                    Text("prova4")
-                }
-            }
-            FloatingTabViewItem(image: "person.circle") {
-                ZStack {
-                    Color.gray
-                    Text("prova5")
+                    Color.blue
+                    Text("Fantastic share View")
+                        .foregroundColor(.white)
                 }
             }
         }
