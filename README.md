@@ -1,10 +1,10 @@
 # FloatingTabView
-A custom TabView in SwiftUI
-
 [![Language](https://img.shields.io/badge/swift-5.5-green.svg)](https://swift.org)
 [![Build Status](https://travis-ci.org/ferranabello/Viperit.svg?branch=master)](https://travis-ci.org/ferranabello/Viperit)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 [![SwiftUI compatible](https://img.shields.io/badge/SwiftUI-compatible-green.svg)](https://developer.apple.com/xcode/swiftui/)
+
+A custom TabView in SwiftUI
 
 ![Alt Text](./Resources/FloatingTabView.gif)
 
