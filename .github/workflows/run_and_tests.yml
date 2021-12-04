@@ -12,8 +12,18 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+      - uses: actions/checkout@main
+      - name: Build
+        uses: sersoft-gmbh/xcodebuild-action@v1
+        with:
+          spm-package: ./
+          scheme: FloatingTabView
+          destination: platform=iOS Simulator,OS=15.0,name=iPhone 13 Pro
+          action: build
+      - name: Test
+        uses: sersoft-gmbh/xcodebuild-action@v1
+        with:
+          spm-package: ./
+          scheme: FloatingTabView
+          destination: platform=iOS Simulator,OS=15.0,name=iPhone 13 Pro
+          action: test
