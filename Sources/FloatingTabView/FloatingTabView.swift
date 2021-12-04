@@ -29,12 +29,14 @@ public struct FloatingTabView: View {
         CGFloat(selected + 1) * itemWidth(tabWidth: tabWidth, padding: padding, items: content.count) + imageSize / 2 + CGFloat(selected) * imageSize
     }
     
-    public init<T>(height: CGFloat = 60,
+    public init<T>(selected: Int = 0,
+                   height: CGFloat = 60,
                    padding: CGFloat = 16,
                    tint: Color = .black,
                    background: Color = .white,
                    imageSize: CGFloat = 25,
                    @ViewBuilder content: () -> TupleView<T>) {
+        self.selected = selected
         self.height = height
         self.padding = padding
         self.tint = tint

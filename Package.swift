@@ -11,13 +11,15 @@ let package = Package(
             name: "FloatingTabView",
             targets: ["FloatingTabView"]),
     ],
-    dependencies: [],
+    dependencies: [.package(name: "SnapshotTesting",
+                            url: "https://github.com/pointfreeco/swift-snapshot-testing.git", .upToNextMajor(from: "1.0.0"))],
     targets: [
         .target(
             name: "FloatingTabView",
             dependencies: []),
         .testTarget(
             name: "FloatingTabViewTests",
-            dependencies: ["FloatingTabView"]),
+            dependencies: ["FloatingTabView", "SnapshotTesting"],
+            resources: [.copy("./__Snapshots__")]),
     ]
 )
