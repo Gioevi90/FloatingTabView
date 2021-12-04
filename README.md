@@ -42,6 +42,30 @@ import FloatingTabView
 
 The code is really simple: you just have to embed you views into the FloatingTabViewItem passing the systemImage name you want to use to the initializer.
 
+Here's a sample
+
+```
+import SwiftUI
+import FloatingTabView
+
+struct ContentView: View {
+    var body: some View {
+        FloatingTabView {
+            FloatingTabViewItem(image: "house.circle") {
+                Color.blue
+            }
+            FloatingTabViewItem(image: "square.and.arrow.up.circle") {
+                ZStack {
+                    Color.blue
+                    Text("Fantastic share View")
+                        .foregroundColor(.white)
+                }
+            }
+        }
+    }
+}
+```
+
 # Future improvements
 
 * Implement different styles
