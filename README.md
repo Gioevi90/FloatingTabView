@@ -3,10 +3,9 @@ A custom TabView in SwiftUI
 
 [![Language](https://img.shields.io/badge/swift-5.5-green.svg)](https://swift.org)
 [![Build Status](https://travis-ci.org/ferranabello/Viperit.svg?branch=master)](https://travis-ci.org/ferranabello/Viperit)
-[![CocoaPods](https://img.shields.io/cocoapods/v/Viperit.svg)](link)
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 [![SwiftUI compatible](https://img.shields.io/badge/SwiftUI-compatible-green.svg)](https://developer.apple.com/xcode/swiftui/)
+
 ![Alt Text](./Resources/FloatingTabView.gif)
 
 FloatingTabView is a very lightweight custom TabView in SwiftUI. 
@@ -27,17 +26,17 @@ The differences between it and the other Custom TabView are:
 
 ## Swift Package Manager (SPM)
 
-You can add it adding the following swift package:
+You can simply install the framework using the following url to add the Swift Package
 
-// link here
+```
+https://github.com/Gioevi90/FloatingTabView.git
+```
 
-## CocoaPods
+Then you can import the framework using the command
 
-Coming soon
-
-## Carthage
-
-Coming soon
+```
+import FloatingTabView
+```
 
 # How to use it
 
@@ -47,3 +46,5 @@ The code is really simple: you just have to embed you views into the FloatingTab
 
 * Implement different styles
 * Implement custom image support
+* Implement Carthage support
+* Implement CocoaPods support
