@@ -1,51 +1,21 @@
-//
-//  ContentView.swift
-//  CusttTabbar
-//
-//  Created by Giovanni Catania on 21/11/21.
-//
-
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        FloatingTabView {
-            FloatingTabViewItem(image: "house.circle") {
-                Color.blue
-            }
-            FloatingTabViewItem(image: "square.and.arrow.up.circle") {
-                ZStack {
-                    Color.blue
-                    Text("Fantastic share View")
-                        .foregroundColor(.white)
-                }
-            }
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
-struct FloatingTabViewItem: View {
+public struct FloatingTabViewItem: View {
     let content: AnyView
     let image: String
     
-    init<Content: View>(image: String = "",
-                        @ViewBuilder content: () -> Content) {
+    public init<Content: View>(image: String = "",
+                               @ViewBuilder content: () -> Content) {
         self.content = AnyView(content())
         self.image = image
     }
     
-    var body: some View {
+    public var body: some View {
         content
     }
 }
 
-struct FloatingTabView: View {
+public struct FloatingTabView: View {
     let content: [FloatingTabViewItem]
     let height: CGFloat
     let padding: CGFloat
@@ -59,12 +29,12 @@ struct FloatingTabView: View {
         CGFloat(selected + 1) * itemWidth(tabWidth: tabWidth, padding: padding, items: content.count) + imageSize / 2 + CGFloat(selected) * imageSize
     }
     
-    init<T>(height: CGFloat = 60,
-            padding: CGFloat = 16,
-            tint: Color = .black,
-            background: Color = .white,
-            imageSize: CGFloat = 25,
-            @ViewBuilder content: () -> TupleView<T>) {
+    public init<T>(height: CGFloat = 60,
+                   padding: CGFloat = 16,
+                   tint: Color = .black,
+                   background: Color = .white,
+                   imageSize: CGFloat = 25,
+                   @ViewBuilder content: () -> TupleView<T>) {
         self.height = height
         self.padding = padding
         self.tint = tint
@@ -73,7 +43,7 @@ struct FloatingTabView: View {
         self.content = content().getViews()
     }
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             content[selected]
                 .frame(maxHeight: .infinity)
@@ -149,11 +119,7 @@ struct TabItemCurve: Shape {
             path.addLine(to: .init(x: 0, y: rect.height))
             
             let mid = target
-            
-            // padding - [1 2 3 4 5] - padding -> single size = (w - padding) / 5
-            // image size = 25
-            // punto centrale -> single size + single size / 2
-            
+                        
             path.move(to: .init(x: mid - 30, y: rect.height))
             
             let to1 = CGPoint(x: mid, y: rect.height - 20)
